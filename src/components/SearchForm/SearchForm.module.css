@@ -1,0 +1,82 @@
+.Input {
+  border-radius: 12px;
+  width: 360px;
+  height: 56px;
+  background: #f7f7f7;
+  color: #101828;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 8px;
+  border: none;
+}
+.Label {
+  font: 400 16px / 1.5 "Inter", sans-serif;
+  color: #6c717b;
+}
+.Form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+  width: 360px;
+  height: 88px;
+}
+.item {
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+
+  width: 112px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.item_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 360px;
+}
+.p {
+  font: 500 16px / 150% "Inter", sans-serif;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #101828;
+  margin-top: 8px;
+}
+.button {
+  border-radius: 200px;
+  padding: 16px 60px;
+  width: 166px;
+  height: 56px;
+  background: #e44848;
+  color: #f7f7f7;
+  border: none;
+  cursor: pointer;
+  margin-top: 40px;
+}
+.line {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.title {
+  font: 600 20px / 120% "Inter", sans-serif;
+  color: #101828;
+  text-align: left;
+  margin-top: 32px;
+}
+.filter_section {
+  width: 360px;
+  height: auto;
+}
+.item_active {
+  color: green;
+  transform: scale(1.1);
+}
+.item_inactive {
+  color: #101828;
+  transform: scale(1);
+}

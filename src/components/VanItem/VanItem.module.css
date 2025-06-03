@@ -1,0 +1,19 @@
+.container {
+  border: 1px solid #dadde1;
+  border-radius: 20px;
+  padding: 24px;
+  width: 888px;
+  height: 368px;
+  background: #fff;
+}
+.image {
+  border-radius: 10px;
+  width: 292px;
+  height: 320px;
+  object-fit: cover;
+}
+.title {
+  font: 600 24px / 133% "Inter", sans-serif;
+  color: #101828;
+}
+
