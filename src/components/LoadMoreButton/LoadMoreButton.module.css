@@ -1,12 +1,12 @@
 .button {
+  border: 1px solid #dadde1;
   border-radius: 200px;
-  padding: 16px 60px;
-  width: 166px;
+  padding: 16px 32px;
+  width: 145px;
   height: 56px;
-  background: #e44848;
+  background-color: #fff;
   font: 500 16px "Inter", sans-serif;
-
-  color: #fff;
+  color: #101828;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -18,7 +18,5 @@
   white-space: nowrap;
 }
 .button:hover {
-  background-color: #d33d3d;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
+  border: 1px solid #d84343;
 }

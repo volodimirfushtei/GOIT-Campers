@@ -1,5 +1,9 @@
 import { useState } from "react";
-// Для використання іконок FontAwesome
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCampers } from "../../redux/Vans/operations";
+import { resetCampers } from "../../redux/Vans/slice";
+import { selectFilters } from "../../redux/filters/selectors";
+import { setFilters } from "../../redux/filters/slice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faWind,
@@ -8,53 +12,67 @@ import {
   faCoffee,
   faBath,
   faCaravan,
+  faRadio,
+  faGasPump,
+  faWater,
+  faAirFreshener,
+  faFileWaveform,
 } from "@fortawesome/free-solid-svg-icons";
+
 import s from "./SearchForm.module.css";
-const vehicleTypes = [
-  { label: "Van", value: "van" },
-  { label: "Fully Integrated", value: "motorhome" },
-  { label: "Alcove", value: "trailer" },
-];
+import Location from "../Location/Location";
+import cities from "../../data/sities.json"; // js-файл містить масив міст
+// Імпорт констант
+import {
+  SEARCH_FORM_EQUIPMENT,
+  SEARCH_FORM_VEHICLE_TYPES,
+} from "../../constants/constants";
+
+// Іконки з FontAwesome
+const ICONS = {
+  faWind,
+  faSitemap,
+  faDesktop,
+  faCoffee,
+  faBath,
+  faCaravan,
+  faRadio,
+  faGasPump,
+  faWater,
+  faAirFreshener,
+  faFileWaveform,
+};
 
 const SearchForm = ({ onSearch }) => {
-  const [filters, setFilters] = useState({
-    location: "", // Локація для пошуку
-    AC: false, // Фільтр кондиціонера
-    automatic: false, // Фільтр автоматичної коробки передач
-    kitchen: false, // Фільтр кухні
-    TV: false, // Фільтр телевізора
-    bathroom: false, // Фільтр ванної
-    vehicleType: "", // Фільтр типу транспортного засобу
-  });
+  const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
+  const [tempFilters, setTempFilters] = useState(filters);
 
   const handleIconClick = (name) => {
-    setFilters((prevState) => ({
-      ...prevState,
-      [name]: !prevState[name], // Інвертуємо значення фільтру при натисканні
+    setTempFilters((prev) => ({
+      ...prev,
+      [name]: !prev[name],
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(filters); // Викликаємо onSearch з обраними фільтрами
+    dispatch(setFilters(tempFilters));
+    dispatch(resetCampers());
+    dispatch(fetchCampers({ ...tempFilters, page: 1, limit: 4 }));
+
+    if (typeof onSearch === "function") {
+      onSearch(tempFilters); // або filters, залежно від твоєї логіки
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className={s.Form}>
-      {/* Локація */}
-      <div>
-        <label className={s.Label}>Location</label>
-        <input
-          type="text"
-          name="location"
-          value={filters.location}
-          onChange={(e) => setFilters({ ...filters, location: e.target.value })}
-          placeholder="Kyiv, Ukraine"
-          className={s.Input}
-        />
-      </div>
+      <Location tempFilters={tempFilters} setTempFilters={setTempFilters} />
 
-      {/* Фільтри за обладнанням */}
+      <p className={s.filter}>Filters</p>
+
+      {/* Обладнання */}
       <div className={s.filter_section}>
         <h4 className={s.title}>Vehicle Equipment</h4>
         <div className={s.line}>
@@ -68,76 +86,29 @@ const SearchForm = ({ onSearch }) => {
             <path d="M0 1H360" stroke="#DADDE1" />
           </svg>
         </div>
+
         <div className={s.item_container}>
-          <div className={s.item}>
-            <FontAwesomeIcon
-              icon={faWind}
-              size="lg"
-              color="#101828"
-              onClick={() => handleIconClick("AC")}
-              style={{
-                color: filters.AC ? "green" : "gray",
-                cursor: "pointer",
-              }}
-            />
-            <p className={s.p}>AC</p>
-          </div>
-          <div className={s.item}>
-            <FontAwesomeIcon
-              icon={faSitemap}
-              size="lg"
-              color="#101828"
-              onClick={() => handleIconClick("automatic")}
-              style={{
-                color: filters.automatic ? "green" : "gray",
-                cursor: "pointer",
-              }}
-            />
-            <p className={s.p}>Automatic</p>
-          </div>
-          <div className={s.item}>
-            <FontAwesomeIcon
-              icon={faDesktop}
-              size="lg"
-              color="#101828"
-              onClick={() => handleIconClick("TV")}
-              style={{
-                color: filters.TV ? "green" : "gray",
-                cursor: "pointer",
-              }}
-            />
-            <p className={s.p}>TV</p>
-          </div>
-          <div className={s.item}>
-            <FontAwesomeIcon
-              icon={faCoffee}
-              size="lg"
-              color="#101828"
-              onClick={() => handleIconClick("kitchen")}
-              style={{
-                color: filters.kitchen ? "green" : "gray",
-                cursor: "pointer",
-              }}
-            />
-            <p className={s.p}>Kitchen</p>
-          </div>
-          <div className={s.item}>
-            <FontAwesomeIcon
-              icon={faBath}
-              size="lg"
-              color="#101828"
-              onClick={() => handleIconClick("bathroom")}
-              style={{
-                color: filters.bathroom ? "green" : "gray",
-                cursor: "pointer",
-              }}
-            />
-            <p className={s.p}>Bathroom</p>
-          </div>
+          {SEARCH_FORM_EQUIPMENT.map(({ key, label, icon }) => (
+            <div
+              className={s.item}
+              key={key}
+              onClick={() => handleIconClick(key)}
+            >
+              <FontAwesomeIcon
+                icon={ICONS[icon]}
+                size="lg"
+                style={{
+                  color: tempFilters[key] ? "red" : "gray",
+                  cursor: "pointer",
+                }}
+              />
+              <p className={s.p}>{label}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Фільтр типу транспортного засобу */}
+      {/* Тип транспорту */}
       <div className={s.filter_section}>
         <h4 className={s.title}>Vehicle Type</h4>
         <div className={s.line}>
@@ -151,18 +122,25 @@ const SearchForm = ({ onSearch }) => {
             <path d="M0 1H360" stroke="#DADDE1" />
           </svg>
         </div>
+
         <div className={s.item_container}>
-          {vehicleTypes.map(({ label, value }) => (
-            <div className={s.item} key={value}>
-              <FontAwesomeIcon
-                icon={faCaravan}
-                size="lg"
-                onClick={() => setFilters({ ...filters, vehicleType: value })}
+          {SEARCH_FORM_VEHICLE_TYPES.map(({ key, label, icon }) => (
+            <div
+              className={s.item}
+              key={key}
+              onClick={() => handleIconClick(key)}
+            >
+              <svg
+                className={s.icon}
                 style={{
-                  color: filters.vehicleType === value ? "green" : "gray",
+                  fill: tempFilters[key] ? "red" : "gray",
                   cursor: "pointer",
+                  width: "24px",
+                  height: "24px",
                 }}
-              />
+              >
+                <use xlinkHref={`/icons-sprite.svg#${icon}`} />
+              </svg>
               <p className={s.p}>{label}</p>
             </div>
           ))}
@@ -170,7 +148,13 @@ const SearchForm = ({ onSearch }) => {
       </div>
 
       {/* Кнопка пошуку */}
-      <button type="submit" className={s.button}>
+      <button
+        type="submit"
+        className={s.button}
+        disabled={
+          !tempFilters.location || !cities.includes(tempFilters.location)
+        }
+      >
         Search
       </button>
     </form>

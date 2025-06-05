@@ -24,13 +24,15 @@
 .item {
   border: 1px solid #dadde1;
   border-radius: 12px;
-
   width: 112px;
   height: 96px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &:hover {
+    border: #e44848 1px solid;
+  }
 }
 .item_container {
   display: flex;
@@ -79,4 +81,14 @@
 .item_inactive {
   color: #101828;
   transform: scale(1);
+}
+.filter {
+  font: 500 16px / 150% "Inter", sans-serif;
+  color: #475467;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-top: 40px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
 }

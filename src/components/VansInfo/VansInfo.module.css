@@ -1,0 +1,18 @@
+.location {
+  font: 400 16px / 1.5 "Inter", sans-serif;
+  color: #101828;
+  margin-left: 16px;
+}
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-gray);
+  transition: fill 0.3s ease;
+  margin-right: 4px;
+}
+.price {
+  font: 600 24px / 1.33333 "Inter", sans-serif;
+  color: #101828;
+  margin-top: 16px;
+  margin-left: auto;
+}

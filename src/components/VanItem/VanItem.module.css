@@ -1,19 +1,103 @@
-.container {
+.card {
+  display: flex;
+  flex-direction: row;
   border: 1px solid #dadde1;
   border-radius: 20px;
   padding: 24px;
   width: 888px;
   height: 368px;
-  background: #fff;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  margin: 20px auto;
+  cursor: pointer;
 }
-.image {
-  border-radius: 10px;
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #f9f9f9;
+  border-color: #c0c4cc;
+}
+
+.imageContainer {
   width: 292px;
   height: 320px;
-  object-fit: cover;
+  border-bottom: 1px solid #eee;
+  border-radius: 10px;
 }
+
+.infoContainer {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  display: flex;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
-  font: 600 24px / 133% "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.price {
+  font: 600 24px / 1.33333 "Inter", sans-serif;
   color: #101828;
 }
 
+.currency,
+.perDay {
+  font: 600 24px / 1.33333 "Inter", sans-serif;
+  color: #101828;
+}
+
+.ratingLocation {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+}
+
+.rating,
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.description {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.type,
+.availability {
+  font-size: 0.9rem;
+  color: #777;
+}
+.feature {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
