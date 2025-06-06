@@ -3,8 +3,21 @@ import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 import VanGallery from "../VanGallery/VanGallery";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useState } from "react";
+import VansFeatures from "../VansFeatures/VansFeatures";
 export default function VanItem({ camper }) {
+  const [isFavorite, setIsFavorite] = useState(camper.isFavorite);
+  if (!camper) {
+    return <div className={s.loading}>Loading...</div>;
+  }
+  if (!camper.gallery || camper.gallery.length === 0) {
+    return <div className={s.error}>No images available</div>;
+  }
+
+  const handleFavoriteClick = () => {
+    setIsFavorite((prev) => !prev);
+    console.log(`Camper ${camper.id} favorite status: ${!isFavorite}`);
+  };
   return (
     <div className={s.card}>
       <div className={s.imageContainer}>
@@ -16,8 +29,11 @@ export default function VanItem({ camper }) {
           <span className={s.price}>
             <span className={s.currency}>€</span>
             {camper.price}
-            <span className={s.perDay}>
-              <FontAwesomeIcon icon={faHeart} color="#FFC10a" />
+            <span className={s.perDay} onClick={handleFavoriteClick}>
+              <FontAwesomeIcon
+                icon={faHeart}
+                color={isFavorite ? "red" : "#FFC10a"}
+              />
             </span>
           </span>
         </div>
@@ -28,15 +44,18 @@ export default function VanItem({ camper }) {
           </span>
           <span className={s.location}>
             <svg className={s.icon}>
-              <use xlinkHref="/src/assets/images/Location.png" />
+              <use xlinkHref="/icons-sprite.svg#icon-map" />
             </svg>
             {camper.location}
           </span>
         </div>
         <p className={s.description}>{camper.description}</p>
-        <p className={s.type}>{camper.type}</p>
 
-        <ShowMoreButton camperId={camper.id} />
+        <VansFeatures camper={camper} detailed={false} />
+        <div className={s.ShowMoreButton_wrapper}>
+          {" "}
+          <ShowMoreButton camperId={camper.id} />
+        </div>
       </div>
     </div>
   );

@@ -43,7 +43,12 @@ export const VEHICLE_TYPES = [
   },
   { key: "alcove", label: "Alcove", icon: "icon-alcove", hasFill: false },
 ];
-
+export const INGINE_TYPES = [
+  { key: "petrol", label: "Petrol", icon: "icon-petrol", hasFill: false },
+  { key: "diesel", label: "Diesel", icon: "icon-diesel", hasFill: false },
+  { key: "electric", label: "Electric", icon: "icon-electric", hasFill: false },
+  { key: "hybrid", label: "Hybrid", icon: "icon-hybrid", hasFill: false },
+];
 export const DETAILS = [
   { key: "form", label: "Form" },
   { key: "length", label: "Length" },
@@ -53,7 +58,6 @@ export const DETAILS = [
   { key: "consumption", label: "Consumption" },
 ];
 
-// Для фільтрів у SearchForm
 export const SEARCH_FORM_EQUIPMENT = [
   { key: "AC", label: "AC", icon: "faWind" },
   { key: "transmission", label: "Automatic", icon: "faSitemap" },
@@ -76,4 +80,11 @@ export const SEARCH_FORM_VEHICLE_TYPES = [
     hasFill: false,
   },
   { key: "alcove", label: "Alcove", icon: "icon-alcove", hasFill: false },
+];
+
+export const SEARCH_FORM_INGINE_TYPES = [
+  { key: "petrol", label: "Petrol", icon: "icon-petrol", hasFill: false },
+  { key: "diesel", label: "Diesel", icon: "icon-petrol", hasFill: false },
+  { key: "electric", label: "Electric", icon: "icon-petrol", hasFill: false },
+  { key: "hybrid", label: "Hybrid", icon: "icon-petrol", hasFill: false },
 ];

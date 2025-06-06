@@ -26,6 +26,7 @@ import cities from "../../data/sities.json"; // js-файл містить ма�
 import {
   SEARCH_FORM_EQUIPMENT,
   SEARCH_FORM_VEHICLE_TYPES,
+  SEARCH_FORM_INGINE_TYPES,
 } from "../../constants/constants";
 
 // Іконки з FontAwesome
@@ -146,7 +147,46 @@ const SearchForm = ({ onSearch }) => {
           ))}
         </div>
       </div>
+      <div className={s.item_container}>
+        {/* Тип двигуна */}
+        <div className={s.filter_section}>
+          <h4 className={s.title}>Engine Type</h4>
+          <div className={s.line}>
+            <svg
+              width="360"
+              height="2"
+              viewBox="0 0 360 2"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 1H360" stroke="#DADDE1" />
+            </svg>
+          </div>
 
+          <div className={s.item_container}>
+            {SEARCH_FORM_INGINE_TYPES.map(({ key, label, icon }) => (
+              <div
+                className={s.item}
+                key={key}
+                onClick={() => handleIconClick(key)}
+              >
+                <svg
+                  className={s.icon}
+                  style={{
+                    fill: tempFilters[key] ? "red" : "gray",
+                    cursor: "pointer",
+                    width: "24px",
+                    height: "24px",
+                  }}
+                >
+                  <use xlinkHref={`/icons-sprite.svg#${icon}`} />
+                </svg>
+                <p className={s.p}>{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       {/* Кнопка пошуку */}
       <button
         type="submit"

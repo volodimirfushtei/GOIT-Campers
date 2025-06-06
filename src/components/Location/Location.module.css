@@ -17,8 +17,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-
   height: 56px;
+
   border-radius: 12px;
   background-color: var(--color-badges);
   position: relative;
@@ -29,6 +29,8 @@
   width: 20px;
   height: 20px;
   fill: var(--color-gray);
+  pointer-events: none;
+  margin-left: 20px;
 }
 
 .icon_active {
@@ -41,20 +43,14 @@
   line-height: 1.5;
   color: var(--color-main);
   flex: 1;
+  background-color: var(--color-badges);
   border: none;
   outline: none;
-  background: #f7f7f7;
-
   width: 360px;
-  height: 56px;
 }
 
 .location_input::placeholder {
   color: var(--color-gray);
-  border-radius: 12px;
-  padding: 18px 218px 18px 20px;
-  width: 360px;
-  height: 56px;
 }
 
 .input_container:hover,
