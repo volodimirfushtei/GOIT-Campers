@@ -1,0 +1,83 @@
+.booking_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  padding: 44px;
+  width: 641px;
+  height: 588px;
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.input {
+  border-radius: 12px;
+  padding: 18px 40px 18px 18px;
+  width: 527px;
+  height: 60px;
+  margin-bottom: 14px;
+  font-size: 16px;
+  font: 400 16px / 1.5 "Inter", sans-serif;
+  color: #6c717b;
+  border: none;
+
+  background: #f7f7f7;
+}
+.label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+.button {
+  border-radius: 200px;
+  padding: 16px 60px;
+  width: 166px;
+  height: 56px;
+  background: #e44848;
+  border: none;
+  cursor: pointer;
+  font: 500 16px / 1.5 "Inter", sans-serif;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-top: 24px;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #d33d3d;
+  }
+}
+.textarea {
+  border-radius: 10px;
+  padding: 18px 308px 76px 18px;
+  width: 527px;
+  height: 118px;
+  background: #f7f7f7;
+  color: #6c717b;
+  font-size: 16px;
+  resize: none;
+  border: none;
+  overflow: auto;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.datepicker_wrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 40px;
+  top: 40%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  pointer-events: none;
+}

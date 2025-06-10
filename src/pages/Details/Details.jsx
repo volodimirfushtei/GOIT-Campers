@@ -10,6 +10,8 @@ import Loader from "../../components/Loader/Loader";
 import VanGallery from "../../components/VanGallery/VanGallery";
 import VansInfo from "../../components/VansInfo/VansInfo";
 import css from "./Details.module.css";
+import BookingForm from "../../components/BookingForm/BookingForm";
+import BookingsList from "../../components/BookingList/BookingList";
 
 const Details = () => {
   const { camperId } = useParams();
@@ -47,12 +49,17 @@ const Details = () => {
           Reviews
         </NavLink>
       </nav>
+
       <hr className={css.details_line} />
-      <div className={css.details_footer}>
+
+      <div className={css.booking_section}>
+        <BookingForm className={css.booking_form} />
         <div className={css.outlet}>
           <Outlet />
         </div>
       </div>
+
+      <BookingsList className={css.bookings_list} />
     </main>
   );
 };

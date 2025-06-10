@@ -5,6 +5,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 export default [
+  // Frontend (browser)
   {
     files: ["**/*.{js,jsx}"],
     ignores: ["dist"],
@@ -34,6 +35,21 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+    },
+  },
+
+  // Backend (Node.js)
+  {
+    files: ["src/backend/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.node, // 👈 додає підтримку process, __dirname тощо
+      parserOptions: {
+        sourceType: "module",
+      },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
     },
   },
 ];

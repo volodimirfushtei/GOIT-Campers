@@ -7,6 +7,7 @@
   background-color: var(--color-background);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
+  position: relative;
 }
 
 .details_main {
@@ -76,10 +77,21 @@
 
 .link:hover {
   color: #007bff;
-  border-color: #007bff;
 }
 
 .active {
   color: #e44848;
-  border-color: #e44848;
+}
+.details_sidebar {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.booking_section {
+  display: flex;
+
+  flex-direction: row;
+  flex-direction: row-reverse;
+  gap: 40px;
+  width: 100%;
 }
