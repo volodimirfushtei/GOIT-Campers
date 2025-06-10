@@ -20,15 +20,10 @@ const BookingForm = () => {
   const initialValues = {
     name: "",
     email: "",
-    bookingDate: null,
+    bookingDate: null, // null для DatePicker
     comment: "",
   };
   const handleSubmit = async (values, { resetForm }) => {
-    const payload = {
-      ...values,
-      bookingDate: values.bookingDate?.toISOString(), // ISO формат
-    };
-
     console.log("Form submitted:", values);
     resetForm();
 
@@ -38,7 +33,7 @@ const BookingForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(values),
       });
 
       if (!response.ok) {
@@ -49,6 +44,9 @@ const BookingForm = () => {
       console.log("Booking saved:", data);
     } catch (error) {
       console.error("Error saving booking:", error);
+    } finally {
+      resetForm();
+      console.log("Booking form submitted successfully");
     }
   };
 

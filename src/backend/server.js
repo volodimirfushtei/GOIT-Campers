@@ -30,12 +30,7 @@ app.post("/bookings", async (req, res) => {
     const bookingResponse = booking.toJSON();
     delete bookingResponse.__v; // видаляємо __v з відповіді
     // Відправка підтвердження на email
-    await sendBookingEmail({
-      name: booking.name,
-      email: booking.email,
-      bookingDate: booking.bookingDate,
-      comment: booking.comment,
-    });
+    await sendBookingEmail({ name, email, bookingDate, comment });
     console.log("Booking email sent to:", booking.email);
 
     res.status(201).json({ message: "Booking saved", booking });
@@ -82,13 +77,13 @@ app.delete("/bookings/:id", async (req, res) => {
     res.status(500).json({ message: "Failed to delete booking" });
   }
 });
-app.get("/bookings", async (req, res) => {
+// GET /bookings
+app.get("/bookings", async (_req, res) => {
   try {
-    const bookings = await Booking.find();
-    console.log("Bookings retrieved:", bookings);
+    const bookings = await Booking.find().select("-__v");
     res.status(200).json(bookings);
   } catch (err) {
-    console.error("Get bookings error:", err);
+    console.error("Error fetching bookings:", err.message);
     res.status(500).json({ message: "Failed to retrieve bookings" });
   }
 });
