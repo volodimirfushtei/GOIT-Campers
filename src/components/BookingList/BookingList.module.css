@@ -6,7 +6,7 @@
   gap: 1rem;
   width: 100%;
   padding: 1rem;
-  background-color: #e1dddd;
+  background-color: var(--color-badges);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 24px;

@@ -14,7 +14,18 @@
 }
 .noFavorites {
   font-size: 1.5rem;
-  color: var(--color-text);
+  color: var(--color-button);
   margin-top: 20px;
   text-align: center;
+  margin: 0 auto;
+  font-weight: 500;
+  padding: 10px;
+  background-color: var(--color-gray-light);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  &:hover {
+    background-color: var(--color-gray);
+    color: var(--color-white);
+  }
 }

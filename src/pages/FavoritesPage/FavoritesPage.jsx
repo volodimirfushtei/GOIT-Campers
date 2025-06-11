@@ -19,7 +19,9 @@ const FavoritesPage = () => {
   const favoriteCampers = allCampers.filter((camper) =>
     favorites.includes(camper.id)
   );
-
+  if (favoriteCampers.length === 0) {
+    return <div className={s.noFavorites}>No favorite campers found.</div>;
+  }
   return (
     <div className={s.favoritesPage}>
       {favoriteCampers.map((camper) => (
