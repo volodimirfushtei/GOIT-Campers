@@ -47,9 +47,36 @@ const BookingsList = () => {
             {booking.comment && (
               <span className={styles.comment}>Comment: {booking.comment}</span>
             )}
+            <button
+              className={styles.deleteButton}
+              onClick={() => {
+                fetch(`http://localhost:5001/bookings/${booking._id}`, {
+                  method: "DELETE",
+                })
+                  .then((res) => {
+                    if (!res.ok) throw new Error("Failed to delete booking");
+                    return res.json();
+                  })
+                  .then(() => {
+                    setBookings((prev) =>
+                      prev.filter((b) => b._id !== booking._id)
+                    );
+                  })
+                  .catch((err) => {
+                    console.error("Error deleting booking:", err);
+                    setError(err.message || "Something went wrong");
+                  });
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
+
+      <p className={styles.total}>
+        Total Bookings: <strong>{bookings.length}</strong>
+      </p>
     </div>
   );
 };

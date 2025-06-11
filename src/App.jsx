@@ -7,6 +7,9 @@ import Layout from "./components/Layout/Layout.jsx";
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
 const Catalog = lazy(() => import("./pages/Catalog/Catalog.jsx"));
 const Details = lazy(() => import("./pages/Details/Details.jsx"));
+const FavoritesPage = lazy(() =>
+  import("./pages/FavoritesPage/FavoritesPage.jsx")
+);
 const VansFeatures = lazy(() =>
   import("./components/VansFeatures/VansFeatures")
 );
@@ -27,6 +30,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="catalog" element={<Catalog />} />
+            <Route path="favorites" element={<FavoritesPage />} />
             <Route path="catalog/:camperId" element={<Details />}>
               <Route path="features" element={<VansFeatures />} />
               <Route path="reviews" element={<VansReviews />} />

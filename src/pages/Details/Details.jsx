@@ -12,7 +12,7 @@ import VansInfo from "../../components/VansInfo/VansInfo";
 import css from "./Details.module.css";
 import BookingForm from "../../components/BookingForm/BookingForm";
 import BookingsList from "../../components/BookingList/BookingList";
-
+import BookingsFavorites from "../../components/BookingsFavorites/BookingsFavorites";
 const Details = () => {
   const { camperId } = useParams();
   const dispatch = useDispatch();
@@ -60,6 +60,7 @@ const Details = () => {
       </div>
 
       <BookingsList className={css.bookings_list} />
+      <BookingsFavorites className={css.bookings_favorites} />
     </main>
   );
 };

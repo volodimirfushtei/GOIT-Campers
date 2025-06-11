@@ -6,6 +6,9 @@ import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import uk from "date-fns/locale/uk";
 import { FaCalendarAlt } from "react-icons/fa";
+import { useState } from "react";
+import ModalBookingSuccess from "../ModalBookingSuccess/ModalBookingSuccess";
+
 // Українська локаль
 registerLocale("uk", uk);
 
@@ -23,6 +26,8 @@ const BookingForm = () => {
     bookingDate: null, // null для DatePicker
     comment: "",
   };
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async (values, { resetForm }) => {
     console.log("Form submitted:", values);
     resetForm();
@@ -42,10 +47,12 @@ const BookingForm = () => {
 
       const data = await response.json();
       console.log("Booking saved:", data);
+      setIsLoading(true); // Показати індикатор завантаження
+      setIsSubmitted(true); // Показати модальне вікно успішної відправки
     } catch (error) {
       console.error("Error saving booking:", error);
     } finally {
-      resetForm();
+      resetForm(); // Очистити форму після успішної відправки
       console.log("Booking form submitted successfully");
     }
   };
@@ -112,6 +119,13 @@ const BookingForm = () => {
           </Form>
         )}
       </Formik>
+      <ModalBookingSuccess
+        isOpen={isSubmitted}
+        onClose={() => setIsSubmitted(false)}
+        contentLabel="Booking Success"
+        shouldCloseOnOverlayClick={true}
+        isLoading={isLoading}
+      />
     </div>
   );
 };

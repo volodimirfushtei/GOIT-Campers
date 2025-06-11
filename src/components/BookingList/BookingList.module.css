@@ -79,3 +79,49 @@
 .noData {
   color: #999;
 }
+.total {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 1rem;
+  text-align: center;
+}
+.deleteButton {
+  background-color: #e44848;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  transition: background-color 0.3s ease;
+}
+.deleteButton:hover {
+  background-color: #d33d3d;
+}
+.deleteButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(227, 72, 72, 0.5);
+}
+.noData {
+  font-size: 1.2rem;
+  color: #464444;
+  margin-top: 1rem;
+  text-align: center;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  cursor: not-allowed;
+}
+.loading {
+  font-size: 1.2rem;
+  color: #464444;
+  text-align: center;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

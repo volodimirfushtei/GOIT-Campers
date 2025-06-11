@@ -4,6 +4,7 @@ const Loader = () => {
   return (
     <div className={s.loader_wrapper}>
       <div className={s.loader} />
+      <p className={s.loader_text}>Loading...</p>
     </div>
   );
 };
