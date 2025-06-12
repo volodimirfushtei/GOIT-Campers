@@ -8,6 +8,7 @@ import uk from "date-fns/locale/uk";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import ModalBookingSuccess from "../ModalBookingSuccess/ModalBookingSuccess";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // Українська локаль
 registerLocale("uk", uk);
@@ -26,13 +27,12 @@ const BookingForm = () => {
     bookingDate: null, // null для DatePicker
     comment: "",
   };
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const handleSubmit = async (values, { resetForm }) => {
-    console.log("Form submitted:", values);
-    resetForm();
 
-    try {
+  const queryClient = useQueryClient();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const mutation = useMutation({
+    mutationFn: async (values) => {
       const response = await fetch("http://localhost:5001/bookings", {
         method: "POST",
         headers: {
@@ -40,21 +40,20 @@ const BookingForm = () => {
         },
         body: JSON.stringify(values),
       });
-
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("Failed to create booking");
       }
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["bookings"] });
+      setIsSubmitted(true);
+    },
+  });
 
-      const data = await response.json();
-      console.log("Booking saved:", data);
-      setIsLoading(true); // Показати індикатор завантаження
-      setIsSubmitted(true); // Показати модальне вікно успішної відправки
-    } catch (error) {
-      console.error("Error saving booking:", error);
-    } finally {
-      resetForm(); // Очистити форму після успішної відправки
-      console.log("Booking form submitted successfully");
-    }
+  const handleSubmit = async (values, { resetForm }) => {
+    mutation.mutate(values);
+    resetForm();
   };
 
   return (
@@ -66,7 +65,7 @@ const BookingForm = () => {
         validationSchema={valSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, values, setFieldValue }) => (
+        {({ values, setFieldValue }) => (
           <Form className={s.form}>
             <label className={s.label}>
               <Field
@@ -113,8 +112,12 @@ const BookingForm = () => {
                 className={s.error}
               />
             </label>
-            <button type="submit" className={s.button} disabled={isSubmitting}>
-              Send
+            <button
+              type="submit"
+              className={s.button}
+              disabled={mutation.isPending}
+            >
+              {mutation.isPending ? "Sending..." : "Send"}
             </button>
           </Form>
         )}
@@ -124,7 +127,7 @@ const BookingForm = () => {
         onClose={() => setIsSubmitted(false)}
         contentLabel="Booking Success"
         shouldCloseOnOverlayClick={true}
-        isLoading={isLoading}
+        isLoading={mutation.isPending}
       />
     </div>
   );

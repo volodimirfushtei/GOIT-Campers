@@ -1,39 +1,44 @@
-import { useEffect, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "./BookingList.module.css";
 
+const fetchBookings = async () => {
+  const res = await fetch("http://localhost:5001/bookings");
+  if (!res.ok) throw new Error("Failed to fetch bookings");
+  return res.json();
+};
+
+const deleteBooking = async (id) => {
+  const res = await fetch(`http://localhost:5001/bookings/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error("Failed to delete booking");
+  return res.json();
+};
+
 const BookingsList = () => {
-  const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    fetch("http://localhost:5001/bookings")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load bookings");
-        return res.json();
-      })
-      .then((data) => {
-        setBookings(data);
-        setError(null);
-      })
-      .catch((err) => {
-        console.error("Error fetching bookings:", err);
-        setError(err.message || "Something went wrong");
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const {
+    data: bookings = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: fetchBookings,
+  });
 
-  if (loading) {
-    return <p className={styles.loading}>Loading bookings...</p>;
-  }
+  const mutation = useMutation({
+    mutationFn: deleteBooking,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["bookings"] }); // автоматично оновити
+    },
+  });
 
-  if (error) {
-    return <p className={styles.error}>⚠️ {error}</p>;
-  }
-
-  if (!bookings.length) {
+  if (isLoading) return <p className={styles.loading}>Loading bookings...</p>;
+  if (isError) return <p className={styles.error}>⚠️ {error.message}</p>;
+  if (!bookings.length)
     return <p className={styles.noData}>No bookings found.</p>;
-  }
 
   return (
     <div className={styles.bookings}>
@@ -49,24 +54,7 @@ const BookingsList = () => {
             )}
             <button
               className={styles.deleteButton}
-              onClick={() => {
-                fetch(`http://localhost:5001/bookings/${booking._id}`, {
-                  method: "DELETE",
-                })
-                  .then((res) => {
-                    if (!res.ok) throw new Error("Failed to delete booking");
-                    return res.json();
-                  })
-                  .then(() => {
-                    setBookings((prev) =>
-                      prev.filter((b) => b._id !== booking._id)
-                    );
-                  })
-                  .catch((err) => {
-                    console.error("Error deleting booking:", err);
-                    setError(err.message || "Something went wrong");
-                  });
-              }}
+              onClick={() => mutation.mutate(booking._id)}
             >
               Delete
             </button>

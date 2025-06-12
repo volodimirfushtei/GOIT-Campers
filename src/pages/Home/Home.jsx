@@ -7,7 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/catalog"); // Перехід на сторінку каталогу
+    navigate("/catalog");
   };
   const [imageSrc, setImageSrc] = useState(heroImage1x);
 
@@ -24,6 +24,7 @@ const Home = () => {
         backgroundImage: `url(${imageSrc})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        width: "1440px",
         height: "696px",
         display: "flex",
         alignItems: "center",
