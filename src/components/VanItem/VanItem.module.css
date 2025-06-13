@@ -125,3 +125,35 @@
   width: 100%;
   margin-top: 24px;
 }
+@media screen and (max-width: 375px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+  }
+  .imageContainer {
+    width: 100%;
+    height: auto;
+  }
+  .infoContainer {
+    padding: 16px;
+  }
+  .description {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+  }
+  .imageContainer {
+    width: 100%;
+    height: auto;
+  }
+  .infoContainer {
+    padding: 16px;
+  }
+  .description {
+    width: 100%;
+  }
+}

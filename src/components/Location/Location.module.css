@@ -85,3 +85,21 @@
 .suggestion_item:hover {
   background-color: var(--color-inputs);
 }
+@media screen and (max-width: 768px) {
+  .location_input {
+    width: 100%;
+  }
+  .input_container {
+    width: 100%;
+  }
+  .location_wrapper {
+    width: 100%;
+    align-items: center;
+  }
+  .error_text {
+    text-align: center;
+  }
+  .suggestions_list {
+    width: 100%;
+  }
+}

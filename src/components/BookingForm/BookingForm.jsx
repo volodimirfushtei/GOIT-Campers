@@ -9,6 +9,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import ModalBookingSuccess from "../ModalBookingSuccess/ModalBookingSuccess";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ClipLoader } from "react-spinners";
 
 // Українська локаль
 registerLocale("uk", uk);
@@ -117,7 +118,14 @@ const BookingForm = () => {
               className={s.button}
               disabled={mutation.isPending}
             >
-              {mutation.isPending ? "Sending..." : "Send"}
+              {mutation.isPending ? (
+                <span className={s.loading_text}>
+                  <ClipLoader size={16} color="#fff" />
+                  Sending...
+                </span>
+              ) : (
+                "Send"
+              )}
             </button>
           </Form>
         )}

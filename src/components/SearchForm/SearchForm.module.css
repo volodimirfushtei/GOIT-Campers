@@ -19,7 +19,7 @@
   flex-direction: column;
   margin-top: 32px;
   width: 360px;
-  height: 88px;
+  height: auto;
 }
 .item {
   border: 1px solid #dadde1;
@@ -32,6 +32,12 @@
   justify-content: center;
   &:hover {
     border: #e44848 1px solid;
+    cursor: pointer;
+    color: #e44848;
+  }
+  &.active {
+    border: #e44848 1px solid;
+    color: #e44848;
   }
 }
 .item_container {
@@ -91,4 +97,51 @@
   text-align: left;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+  .Input {
+    width: 100%;
+  }
+  .Form {
+    width: 100%;
+  }
+  .item_container {
+    width: 100%;
+  }
+  .filter_section {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 375px) {
+  .Input {
+    width: 100%;
+  }
+  .Form {
+    width: 100%;
+  }
+  .item_container {
+    width: 100%;
+  }
+  .filter_section {
+    width: 100%;
+  }
+  .title {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .line {
+    display: none;
+  }
+  .item {
+    width: 72px;
+    height: 68px;
+  }
+  .p {
+    font-size: 10px;
+  }
+  .button {
+    padding: 10px 30px;
+    width: 100%;
+    height: 42px;
+  }
 }

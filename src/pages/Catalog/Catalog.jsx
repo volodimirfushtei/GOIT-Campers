@@ -24,9 +24,11 @@ const CamperPage = () => {
       <SearchForm />
       {isLoading && <Loader />}
       {error ? (
-        <div className={css.error_message}>⚠️ {error}</div>
+        <div className="text-red-600 text-sm text-center">⚠️ {error}</div>
       ) : (
-        <VanList />
+        <div className="w-full ">
+          <VanList />
+        </div>
       )}
     </main>
   );

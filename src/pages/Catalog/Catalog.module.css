@@ -1,10 +1,36 @@
 .container_catalog {
   max-width: 1400px;
-  height: 1764px;
+  height: auto;
   background: #fff;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   gap: 64px;
   margin-top: 48px;
+}
+
+@media screen and (max-width: 375px) {
+  .container_catalog {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+    max-width: 375px;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container_catalog {
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding: 24px;
+    max-width: 768px;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+  }
 }

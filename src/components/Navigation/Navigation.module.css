@@ -24,3 +24,13 @@
   gap: 32px;
   justify-content: center;
 }
+.MobileMenu {
+  position: absolute;
+  left: 16px;
+  top: 20px;
+}
+@media screen and (max-width: 768px) {
+  .wrapperLinks {
+    display: none;
+  }
+}

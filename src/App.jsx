@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "./components/Loader/Loader";
 import Layout from "./components/Layout/Layout.jsx";
-
+import Contact from "./pages/Contact/Contact.jsx";
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
 const Catalog = lazy(() => import("./pages/Catalog/Catalog.jsx"));
 const Details = lazy(() => import("./pages/Details/Details.jsx"));
@@ -31,6 +31,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="catalog" element={<Catalog />} />
             <Route path="favorites" element={<FavoritesPage />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="catalog/:camperId" element={<Details />}>
               <Route path="features" element={<VansFeatures />} />
               <Route path="reviews" element={<VansReviews />} />

@@ -37,7 +37,6 @@ const Details = () => {
         <VansInfo camper={camper} isDetailed={true} />
         <VanGallery images={camper.gallery} />
         <div className={css.description}>
-          <h3 className={css.description_title}>Description</h3>
           <p className={css.description_text}>{camper.description}</p>
         </div>
       </div>
