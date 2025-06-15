@@ -48,3 +48,30 @@
 button:hover {
   background: #d84343;
 }
+@media screen and (max-width: 768px) {
+  .container_button {
+    width: 100%;
+    left: 24px;
+  }
+  .item {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .container_button {
+    width: 100%;
+    left: 12px;
+  }
+  .item {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .container {
+    width: 375px;
+    margin: 0 auto;
+  }
+}

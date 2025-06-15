@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Loader from "./components/Loader/Loader";
 import Layout from "./components/Layout/Layout.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
+import { Toaster } from "react-hot-toast";
 const Home = lazy(() => import("./pages/Home/Home.jsx"));
 const Catalog = lazy(() => import("./pages/Catalog/Catalog.jsx"));
 const Details = lazy(() => import("./pages/Details/Details.jsx"));
@@ -39,6 +40,45 @@ function App() {
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          toastOptions={{
+            style: {
+              borderRadius: "8px",
+              background: "#333",
+              color: "#fff",
+              fontSize: "16px",
+              padding: "16px",
+              border: "1px solid #ccc",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            },
+            success: {
+              style: {
+                background: "#4CAF50",
+                color: "#fff",
+              },
+            },
+            error: {
+              style: {
+                background: "#f44336",
+                color: "#fff",
+              },
+            },
+            loading: {
+              style: {
+                background: "#2196F3",
+                color: "#fff",
+              },
+            },
+            complete: {
+              style: {
+                background: "#4CAF50",
+                color: "#fff",
+              },
+            },
+          }}
+        />
       </Suspense>
     </>
   );

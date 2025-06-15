@@ -71,3 +71,17 @@
   flex-direction: row;
   gap: 4px;
 }
+@media screen and (max-width: 768px) {
+  .reviews_container {
+    padding: 24px;
+  }
+
+  .review_card {
+    padding: 16px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .reviews_container {
+    padding: 16px;
+  }
+}

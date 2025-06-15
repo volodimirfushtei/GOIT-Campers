@@ -95,3 +95,33 @@
   gap: 40px;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .details_page {
+    width: 100%;
+  }
+  .booking_section {
+    flex-direction: column;
+  }
+  .details_sidebar {
+    flex-direction: column;
+  }
+  .details_main {
+    flex-direction: column;
+  }
+  .details_footer {
+    flex-direction: column;
+  }
+
+  .outlet {
+    max-width: 100%;
+    min-height: 100%;
+  }
+  .details_page {
+    padding: 24px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .details_page {
+    padding: 16px;
+  }
+}

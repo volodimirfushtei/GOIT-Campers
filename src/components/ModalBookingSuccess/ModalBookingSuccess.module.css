@@ -47,3 +47,25 @@
   color: var(--color-text);
   margin-bottom: 16px;
 }
+@media screen and (max-width: 768px) {
+  .modal {
+    padding: 16px;
+  }
+  .modal_title {
+    font-size: 20px;
+  }
+  .modal_message {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .modal {
+    padding: 8px;
+  }
+  .modal_title {
+    font-size: 16px;
+  }
+  .modal_message {
+    font-size: 12px;
+  }
+}

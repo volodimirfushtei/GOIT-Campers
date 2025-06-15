@@ -46,3 +46,13 @@
   margin-top: 1rem;
   flex-direction: row;
 }
+@media screen and (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 375px) {
+  .buttons {
+    flex-direction: column;
+  }
+}

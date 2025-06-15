@@ -4,10 +4,14 @@ import cors from "cors";
 import mongoose from "mongoose";
 import connectDB from "./db.js";
 import Booking from "./models/Booking.js";
+import Contact from "./models/Contact.js";
 import { sendBookingEmail } from "./mailer.js";
+import axios from "axios";
+import toast from "react-hot-toast";
 dotenv.config();
 connectDB();
 const app = express();
+
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 // Middleware для логування запитів
@@ -85,6 +89,102 @@ app.get("/bookings", async (_req, res) => {
   } catch (err) {
     console.error("Error fetching bookings:", err.message);
     res.status(500).json({ message: "Failed to retrieve bookings" });
+  }
+});
+app.get("/contacts", async (_req, res) => {
+  try {
+    const contacts = await Contact.find().select("-__v");
+    res.status(200).json(contacts);
+  } catch (err) {
+    console.error("Error fetching contacts:", err.message);
+    res.status(500).json({ message: "Failed to retrieve contacts" });
+  }
+});
+app.post("/contacts", async (req, res) => {
+  const { name, email, message } = req.body;
+  if (!name || !email || !message) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+  try {
+    const contact = new Contact({ name, email, message });
+    console.log("Contact data received:", contact);
+    await contact.save();
+    console.log("Contact saved:", contact);
+    res.status(201).json({ message: "Contact saved", contact });
+  } catch (err) {
+    console.error("Save contact error:", err);
+    res.status(500).json({ message: "Failed to save contact" });
+  }
+});
+
+app.get("/contacts/:id", async (req, res) => {
+  const { id } = req.params;
+  // Перевірка валідності ObjectId перед запитом
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: "Invalid contact ID" });
+  }
+  try {
+    const contact = await Contact.findById(id);
+    if (!contact) {
+      return res.status(404).json({ message: "Contact not found" });
+    }
+    console.log("Contact retrieved:", contact);
+    res.status(200).json(contact);
+  } catch (err) {
+    console.error("Get contact error:", err);
+    res.status(500).json({ message: "Failed to retrieve contact" });
+  }
+});
+
+app.delete("/contacts/:id", async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: "Invalid contact ID" });
+  }
+  try {
+    const contact = await Contact.findByIdAndDelete(id);
+    if (!contact) {
+      return res.status(404).json({ message: "Contact not found" });
+    }
+    console.log("Contact deleted:", contact);
+    res.status(200).json({ message: "Contact deleted", contact });
+  } catch (err) {
+    console.error("Delete contact error:", err);
+    res.status(500).json({ message: "Failed to delete contact" });
+  }
+});
+
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const CHAT_ID = process.env.CHAT_ID;
+app.post("/", async (req, res) => {
+  const { name, email, message } = req.body;
+
+  try {
+    // Зберігаємо у базу (опціонально)
+    const newContact = await Contact.create({ name, email, message });
+    console.log("Contact saved:", newContact);
+
+    // Формуємо текст повідомлення
+    const text = `
+📩 Нова заявка з сайту:
+👤 Ім'я: ${name}
+📧 Email: ${email}
+💬 Повідомлення: ${message || "—"}
+`;
+
+    // Надсилаємо у Telegram
+    await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      chat_id: CHAT_ID,
+      text,
+      parse_mode: "Markdown",
+    });
+
+    res.status(201).json({ message: "Message saved and sent to Telegram" });
+    toast.success("Message sent to telegram successfully!");
+  } catch (error) {
+    console.error("Telegram send error:", error.message);
+    res.status(500).json({ error: "Error saving or sending message" });
   }
 });
 

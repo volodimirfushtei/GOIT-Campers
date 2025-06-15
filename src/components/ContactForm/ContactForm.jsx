@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
@@ -9,30 +10,32 @@ const validationSchema = Yup.object({
 });
 
 const ContactForm = () => {
-  const [status, setStatus] = useState("");
+  const initialValues = {
+    name: "",
+    email: "",
+    message: "",
+  };
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      const res = await fetch("http://localhost:5001/contact", {
+      const res = await fetch("http://localhost:5001/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-
       if (!res.ok) throw new Error("Error submitting form");
-
-      setStatus("✅ Message sent successfully!");
+      toast.success("Message sent successfully!");
       resetForm();
     } catch (error) {
       console.log(error);
-      setStatus("❌ Failed to send message. Try again.");
+      toast.error("Error submitting form");
     }
   };
-
   return (
     <Formik
-      initialValues={{ name: "", email: "", message: "" }}
+      enableReinitialize
       validationSchema={validationSchema}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
@@ -40,6 +43,7 @@ const ContactForm = () => {
           <div className="mb-2">
             <Field
               name="name"
+              autoFocus
               placeholder="Your Name"
               className="w-80 mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -49,7 +53,6 @@ const ContactForm = () => {
               style={{ color: "red" }}
             />
           </div>
-
           <div className="mb-2">
             <Field
               name="email"
@@ -63,7 +66,6 @@ const ContactForm = () => {
               style={{ color: "red" }}
             />
           </div>
-
           <div className="mb-3">
             <Field
               name="message"
@@ -77,16 +79,13 @@ const ContactForm = () => {
               style={{ color: "red" }}
             />
           </div>
-
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-red-600 w-80 text-white px-6  py-2 rounded hover:bg-red-700 transition cursor-pointer"
+            className="bg-red-600  text-white px-6  py-2 rounded hover:bg-red-700 transition cursor-pointer"
           >
             {isSubmitting ? "Sending..." : "Send"}
           </button>
-
-          {status && <p>{status}</p>}
         </Form>
       )}
     </Formik>

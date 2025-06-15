@@ -125,3 +125,13 @@
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+@media (max-width: 768px) {
+  .bookingItem {
+    width: calc(50% - 1rem);
+  }
+}
+@media (max-width: 375px) {
+  .bookingItem {
+    width: 100%;
+  }
+}

@@ -5,6 +5,11 @@ const contactsSchema = new mongoose.Schema({
   email: { type: String, required: true },
   message: { type: String },
 });
+contactsSchema.set("toJSON", {
+  transform: (doc, ret) => delete ret.__v,
+  virtuals: true,
+});
+
 const Contacts =
   mongoose.models.Contacts || mongoose.model("Contacts", contactsSchema);
 
