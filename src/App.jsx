@@ -25,7 +25,24 @@ function App() {
   const IsLoading = useSelector(selectIsLoading);
   return (
     <>
-      {IsLoading && <Loader />}
+      {IsLoading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            width: "100%",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            zIndex: 9999,
+          }}
+        >
+          <Loader />
+        </div>
+      )}
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
