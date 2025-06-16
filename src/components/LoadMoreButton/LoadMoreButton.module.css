@@ -20,3 +20,13 @@
 .button:hover {
   border: 1px solid #d84343;
 }
+@media (max-width: 768px) {
+  .button {
+    width: 100%;
+  }
+}
+@media (max-width: 375px) {
+  .button {
+    width: 100%;
+  }
+}

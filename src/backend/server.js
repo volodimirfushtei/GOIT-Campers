@@ -174,12 +174,32 @@ app.post("/", async (req, res) => {
 `;
 
     // Надсилаємо у Telegram
-    await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      chat_id: CHAT_ID,
-      text,
-      parse_mode: "Markdown",
-    });
-
+    const response = await axios.post(
+      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+      {
+        chat_id: CHAT_ID,
+        text,
+        parse_mode: "Markdown",
+      }
+    );
+    const messageId = response.data.result.message_id;
+    setTimeout(async () => {
+      try {
+        await axios.post(
+          `https://api.telegram.org/bot${BOT_TOKEN}/deleteMessage`,
+          {
+            chat_id: CHAT_ID,
+            message_id: messageId,
+          }
+        );
+        console.log(`✅ Message ${messageId} deleted from Telegram`);
+      } catch (deleteError) {
+        console.error(
+          "❌ Failed to delete Telegram message:",
+          deleteError.message
+        );
+      }
+    }, 30000);
     res.status(201).json({ message: "Message saved and sent to Telegram" });
     toast.success("Message sent to telegram successfully!");
   } catch (error) {
