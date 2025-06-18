@@ -1,8 +1,36 @@
-# React + Vite
+# CRM Dashboard (Next.js + Express + MongoDB)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔥 Сучасна CRM система для управління компаніями, акціями, категоріями та статистикою. Підтримує адмін-панель, REST API та інтеграцію з базою даних MongoDB.
 
-Currently, two official plugins are available:
+## ⚙️ Технології
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend**: Next.js 15 (App Router), React, Tailwind CSS
+- **Backend**: Express.js + MongoDB
+- **База даних**: MongoDB Atlas / local MongoDB
+- **API**: RESTful (Node.js + Express)
+- **Стейт**: Zustand / Redux Toolkit
+- **Форми**: Formik + Yup
+- **Клієнтський HTTP**: `fetch` / React Query
+- **Карта**: React Leaflet
+- **Адмін-панель**: `/admin` маршрути
+
+---
+
+## 🧱 Структура проєкту
+
+crm/
+├── app/ # Next.js App Router
+│ ├── (admin)/ # Admin-панель
+│ │ ├── dashboard/
+│ │ └── companies/
+│ ├── components/ # UI-компоненти
+│ ├── lib/ # API-клієнт, утиліти
+│ └── styles/
+├── backend/ # Express-сервер
+│ ├── models/ # Mongoose схеми
+│ ├── routes/ # API маршрути
+│ └── server.js # Точка входу
+├── public/
+├── .env.local # ENV-змінні
+├── README.md
+└── package.json

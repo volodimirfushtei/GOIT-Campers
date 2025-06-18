@@ -8,6 +8,7 @@ import Contact from "./models/Contact.js";
 import { sendBookingEmail } from "./mailer.js";
 import axios from "axios";
 import toast from "react-hot-toast";
+
 dotenv.config();
 connectDB();
 const app = express();
