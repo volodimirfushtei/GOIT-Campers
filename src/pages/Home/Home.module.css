@@ -61,14 +61,14 @@ button:hover {
 @media screen and (max-width: 375px) {
   .container_button {
     width: 100%;
-    left: 12px;
+    left: 16px;
   }
   .item {
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 8px;
   }
   .title {
-    font-size: 32px;
+    font-size: 28px;
   }
   .container {
     width: 375px;
