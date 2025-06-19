@@ -16,25 +16,30 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  "http://localhost:5173", // Vite (frontend)
-  "http://localhost:5001", // інший бекенд або панель
-  "http://localhost:3000", // наприклад, Next.js або React
+  "http://localhost:5173", // Vite
+  "http://localhost:5000", // можливо твій бекенд-фронт
+  "http://localhost:3000", // наприклад, React/Next.js
 ];
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // дозволити запити без origin (наприклад, Postman)
-      if (!origin || allowedOrigins.includes(origin)) {
+    origin: function (origin, callback) {
+      if (!origin) {
+        // дозволь запити без origin (наприклад, Postman або SSR)
         return callback(null, true);
       }
-      return callback(new Error("Not allowed by CORS"));
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        console.warn("Blocked by CORS:", origin);
+        return callback(new Error("Not allowed by CORS"));
+      }
     },
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     exposedHeaders: ["Content-Type", "Authorization"],
-    optionsSuccessStatus: 200,
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 
