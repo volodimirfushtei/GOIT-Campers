@@ -3,7 +3,11 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 
-import { selectCurrentCamper } from "../../redux/Vans/selectors";
+import {
+  selectCurrentCamper,
+  selectIsLoading,
+  selectError,
+} from "../../redux/Vans/selectors";
 import { fetchCamperById } from "../../redux/Vans/operations";
 
 import Loader from "../../components/Loader/Loader";
@@ -17,7 +21,8 @@ const Details = () => {
   const { camperId } = useParams();
   const dispatch = useDispatch();
   const camper = useSelector(selectCurrentCamper);
-
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
   useEffect(() => {
     if (camperId) {
       dispatch(fetchCamperById(camperId));
@@ -57,8 +62,14 @@ const Details = () => {
           <Outlet />
         </div>
       </div>
-
-      <BookingsList className={css.bookings_list} />
+      {isLoading && <Loader />}
+      {error ? (
+        <div className="text-red-600 text-sm text-center">⚠️ {error}</div>
+      ) : (
+        <div className="w-full ">
+          <BookingsList className={css.bookings_list} />
+        </div>
+      )}
       <BookingsFavorites className={css.bookings_favorites} />
     </main>
   );

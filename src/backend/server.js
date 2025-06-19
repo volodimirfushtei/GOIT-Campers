@@ -14,7 +14,30 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+const allowedOrigins = [
+  "http://localhost:5173", // Vite (frontend)
+  "http://localhost:5001", // інший бекенд або панель
+  "http://localhost:3000", // наприклад, Next.js або React
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // дозволити запити без origin (наприклад, Postman)
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
+
 // Middleware для логування запитів
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);

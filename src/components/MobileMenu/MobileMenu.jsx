@@ -21,18 +21,18 @@ const MobileMenu = ({ isAuthenticated = false }) => {
       <nav className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
         <ul>
           <li className={styles.fadeIn}>
-            <a href="/" onClick={closeMenu}>
+            <a href="/" onClick={closeMenu} className={styles.link}>
               Home
             </a>
           </li>
           <li className={styles.fadeIn}>
-            <a href="/catalog" onClick={closeMenu}>
+            <a href="/catalog" onClick={closeMenu} className={styles.link}>
               Catalog
             </a>
           </li>
 
           <li className={styles.fadeIn}>
-            <a href="/favorites" onClick={closeMenu}>
+            <a href="/favorites" onClick={closeMenu} className={styles.link}>
               Favorites
             </a>
           </li>

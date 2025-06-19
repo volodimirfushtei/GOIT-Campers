@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
+
 import Loader from "./components/Loader/Loader";
 import Layout from "./components/Layout/Layout.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
@@ -18,31 +18,12 @@ const VansReviews = lazy(() =>
   import("./components/VansReviews/VansReviews.jsx")
 );
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
-import { selectIsLoading } from "./redux/Vans/selectors.js";
+
 import "./App.css";
 
 function App() {
-  const IsLoading = useSelector(selectIsLoading);
   return (
     <>
-      {IsLoading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-            width: "100%",
-            position: "fixed",
-            top: 0,
-            left: 0,
-            backgroundColor: "rgba(255, 255, 255, 0.9)",
-            zIndex: 9999,
-          }}
-        >
-          <Loader />
-        </div>
-      )}
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>

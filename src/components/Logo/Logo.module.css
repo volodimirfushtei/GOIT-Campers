@@ -4,7 +4,21 @@
   width: 136px;
   height: 16px;
 }
-
+.Logo_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.Logo_wrapper:hover {
+  cursor: pointer;
+}
+.logovf {
+  width: 56px;
+  height: 76px;
+  position: absolute;
+  left: 0px;
+}
 @media screen and (max-width: 768px) {
   .logo {
     width: 126px;
