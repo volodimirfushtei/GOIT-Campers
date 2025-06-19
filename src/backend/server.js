@@ -16,16 +16,15 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  "http://localhost:5173", // Vite
-  "http://localhost:5000", // можливо твій бекенд-фронт
-  "http://localhost:3000", // наприклад, React/Next.js
+  "http://localhost:5173",
+  "http://localhost:5001",
+  "https://goit-campers-ten.vercel.app",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
       if (!origin) {
-        // дозволь запити без origin (наприклад, Postman або SSR)
         return callback(null, true);
       }
       if (allowedOrigins.includes(origin)) {
