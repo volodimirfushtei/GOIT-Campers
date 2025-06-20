@@ -58,12 +58,39 @@ const SearchForm = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setFilters(tempFilters));
+
+    // 🔹 1. Витягнути ключі
+    const equipmentKeys = SEARCH_FORM_EQUIPMENT.map((item) => item.key);
+    const vehicleTypeKeys = SEARCH_FORM_VEHICLE_TYPES.map((item) => item.key);
+    const engineTypeKeys = SEARCH_FORM_INGINE_TYPES.map((item) => item.key);
+
+    // 🔹 2. Побудувати значення
+    const selectedEquipment = equipmentKeys.filter((key) => tempFilters[key]);
+    const selectedVehicleType =
+      vehicleTypeKeys.find((key) => tempFilters[key]) || "";
+    const selectedEngine = engineTypeKeys.find((key) => tempFilters[key]) || "";
+
+    // 🔹 3. Очистити зайві булеві прапорці
+    const cleanedFilters = { ...tempFilters };
+    [...equipmentKeys, ...vehicleTypeKeys, ...engineTypeKeys].forEach((key) => {
+      delete cleanedFilters[key];
+    });
+
+    // 🔹 4. Побудувати фінальний payload
+    const payload = {
+      ...cleanedFilters,
+      equipment: selectedEquipment,
+      vehicleType: selectedVehicleType,
+      engine: selectedEngine,
+    };
+
+    // 🔹 5. Відправити
+    dispatch(setFilters(payload));
     dispatch(resetCampers());
-    dispatch(fetchCampers({ ...tempFilters, page: 1, limit: 4 }));
+    dispatch(fetchCampers({ ...payload, page: 1, limit: 4 }));
 
     if (typeof onSearch === "function") {
-      onSearch(tempFilters); // або filters, залежно від твоєї логіки
+      onSearch(payload);
     }
   };
 
@@ -191,6 +218,7 @@ const SearchForm = ({ onSearch }) => {
       <button
         type="submit"
         className={s.button}
+        aria-label="Search"
         disabled={
           !tempFilters.location || !cities.includes(tempFilters.location)
         }

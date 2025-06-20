@@ -5,10 +5,11 @@ import { fetchCampers } from "../../redux/Vans/operations";
 import { selectError, selectIsLoading } from "../../redux/Vans/selectors";
 
 import Loader from "../../components/Loader/Loader";
-import SearchForm from "../../components/SearchForm/SearchForm";
+
 import VanList from "../../components/VanList/VanList";
 
 import css from "./Catalog.module.css";
+import SideBar from "../../components/SideBar/SideBar";
 
 const CamperPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const CamperPage = () => {
 
   return (
     <main className={css.container_catalog}>
-      <SearchForm />
+      <SideBar />
       {isLoading && <Loader />}
       {error ? (
         <div className="text-red-600 text-sm text-center">⚠️ {error}</div>

@@ -4,3 +4,4 @@ export const selectVehicleType = (state) => state.filters.vehicleType;
 export const selectEquipment = (state) => state.filters.equipment;
 export const selectTransmission = (state) => state.filters.transmission;
 export const selectEngine = (state) => state.filters.engine;
+export const selectFiltersError = (state) => state.filters.error;
