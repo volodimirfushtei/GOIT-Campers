@@ -25,7 +25,9 @@ const CamperPage = () => {
       <SideBar />
       {isLoading && <Loader />}
       {error ? (
-        <div className="text-red-600 text-sm text-center">⚠️ {error}</div>
+        <div className="text-red-600 p-5 text-xl text-center bg-gradient-to-br from-red-100 via-white to-red-200 w-full height-10">
+          ⚠️ {error}
+        </div>
       ) : (
         <div className="w-full ">
           <VanList />
