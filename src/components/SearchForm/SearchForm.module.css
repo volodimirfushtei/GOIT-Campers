@@ -34,7 +34,12 @@
     border: #e44848 1px solid;
     cursor: pointer;
     color: #e44848;
+    transform: scale(1.05);
+    transition: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
   }
+
   &.active {
     border: #e44848 1px solid;
     color: #e44848;

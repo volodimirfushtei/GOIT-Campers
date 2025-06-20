@@ -30,7 +30,6 @@ const VanList = () => {
           <VanItem key={camper.id} camper={camper} />
         ))}
       </ul>
-
       {!isLoading && campers.length < totalCampers && (
         <LoadMoreButton onClick={loadMore} />
       )}

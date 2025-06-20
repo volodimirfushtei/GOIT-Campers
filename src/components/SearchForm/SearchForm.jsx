@@ -120,6 +120,13 @@ const SearchForm = ({ onSearch }) => {
             <div
               className={s.item}
               key={key}
+              style={{
+                color: tempFilters[key] ? "white" : "black",
+                border: tempFilters[key]
+                  ? "1px solid #FF0000"
+                  : "1px solid #DADDE1",
+                cursor: "pointer",
+              }}
               onClick={() => handleIconClick(key)}
             >
               <FontAwesomeIcon
@@ -155,6 +162,13 @@ const SearchForm = ({ onSearch }) => {
           {SEARCH_FORM_VEHICLE_TYPES.map(({ key, label, icon }) => (
             <div
               className={s.item}
+              style={{
+                color: tempFilters[key] ? "white" : "black",
+                border: tempFilters[key]
+                  ? "1px solid #FF0000"
+                  : "1px solid #DADDE1",
+                cursor: "pointer",
+              }}
               key={key}
               onClick={() => handleIconClick(key)}
             >
@@ -195,15 +209,22 @@ const SearchForm = ({ onSearch }) => {
               <div
                 className={s.item}
                 key={key}
+                style={{
+                  color: tempFilters[key] ? "white" : "black",
+                  border: tempFilters[key]
+                    ? "1px solid #FF0000"
+                    : "1px solid #DADDE1",
+                  cursor: "pointer",
+                }}
                 onClick={() => handleIconClick(key)}
               >
                 <svg
                   className={s.icon}
                   style={{
-                    fill: tempFilters[key] ? "red" : "gray",
                     cursor: "pointer",
                     width: "24px",
                     height: "24px",
+                    fill: tempFilters[key] ? "red" : "gray",
                   }}
                 >
                   <use xlinkHref={`/icons-sprite.svg#${icon}`} />
