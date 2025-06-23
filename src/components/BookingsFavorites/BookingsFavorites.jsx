@@ -29,7 +29,7 @@ const BookingsFavorites = () => {
 
       <div className={s.buttons}>
         <button
-          className={s.button}
+          className={s.exploreButton}
           onClick={() => navigate("/favorites")}
           title="Explore Bookings"
           aria-label="Explore Favorites"

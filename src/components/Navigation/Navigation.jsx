@@ -3,6 +3,7 @@ import clsx from "clsx";
 import s from "./Navigation.module.css";
 import Logo from "../Logo/Logo.jsx";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
+import Switch from "../Switch/Switch";
 
 const Navigation = () => {
   const buildLinkClass = ({ isActive }) => {
@@ -26,6 +27,9 @@ const Navigation = () => {
           Favorites
         </NavLink>
         <div className={s.MobileMenu}></div>
+      </div>
+      <div className={s.switch}>
+        <Switch />
       </div>
     </div>
   );

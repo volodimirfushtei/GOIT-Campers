@@ -34,7 +34,7 @@
   padding: 16px 48px;
   width: 173px;
   height: 56px;
-  background: #e44848;
+  background: radial-gradient(circle at center, #f11919 0%, #ae2d4f 70%);
   margin-top: 40px;
   cursor: pointer;
   border: none;
@@ -46,7 +46,7 @@
   text-align: center;
 }
 button:hover {
-  background: #d84343;
+  background: radial-gradient(circle at center, #f11919 0%, #ae2d4f 50%);
 }
 @media screen and (max-width: 768px) {
   .container_button {

@@ -3,11 +3,15 @@
   flex-direction: column;
   gap: 44px;
   padding: 44px 52px;
-  background-color: var(--color-badges);
+
   height: 100%;
 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
 }
 
 .review_card {

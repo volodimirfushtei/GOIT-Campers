@@ -12,11 +12,15 @@
   border-bottom: 1px solid #f2f4f7;
   max-width: 1440px;
   height: 72px;
-  background: #f7f7f7;
+
+  color: var(--color-main);
+  width: 100%;
+  z-index: 1000;
   align-items: center;
   justify-content: center;
   position: relative;
 }
+
 .wrapperLinks {
   display: flex;
   align-items: center;
@@ -26,6 +30,11 @@
 .MobileMenu {
   position: absolute;
   left: 16px;
+  top: 20px;
+}
+.switch {
+  position: absolute;
+  right: 32px;
   top: 20px;
 }
 @media screen and (max-width: 768px) {

@@ -5,12 +5,12 @@
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
-  background-color: var(--color-badges);
+
   border-radius: 8px;
   margin-top: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
-.button {
+.exploreButton {
   padding: 0.5rem 1rem;
 
   color: white;
@@ -20,9 +20,10 @@
   font-size: 1rem;
   padding: 0.8rem 1.5rem;
   cursor: pointer;
+
   transition: background-color 0.3s ease;
   &:hover {
-    background-color: #329935;
+    background-color: #27c22c;
   }
 }
 .clearButton {

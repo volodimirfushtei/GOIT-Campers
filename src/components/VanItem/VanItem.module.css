@@ -6,7 +6,7 @@
   padding: 24px;
   width: 100%;
   height: 368px;
-  background-color: #fff;
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
   margin: 20px auto;
@@ -14,10 +14,7 @@
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #f9f9f9;
-  border-color: #c0c4cc;
+  transform: scale(1.03);
 }
 
 .imageContainer {
@@ -45,18 +42,16 @@
 .title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #333;
 }
 
 .price {
   font: 600 24px / 1.33333 "Inter", sans-serif;
-  color: #101828;
 }
 
 .currency,
 .perDay {
   font: 600 24px / 1.33333 "Inter", sans-serif;
-  color: #101828;
+
   margin-left: 13px;
 }
 
@@ -67,13 +62,12 @@
   align-items: center;
 }
 
-.rating,
+.rating_text,
 .location {
   display: flex;
   align-items: center;
   gap: 4px;
   font-size: 0.95rem;
-  color: #444;
 }
 
 .icon {
@@ -83,7 +77,6 @@
 }
 
 .description {
-  color: #555;
   font-size: 0.95rem;
   white-space: nowrap;
   overflow: hidden;
@@ -96,7 +89,6 @@
 .type,
 .availability {
   font-size: 0.9rem;
-  color: #777;
 }
 .feature {
   display: flex;
@@ -106,7 +98,6 @@
   align-items: center;
   gap: 8px;
   font-size: 0.9rem;
-  color: #555;
 }
 .featureIcon {
   width: 16px;

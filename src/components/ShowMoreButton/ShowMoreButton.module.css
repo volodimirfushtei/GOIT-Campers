@@ -3,7 +3,7 @@
   padding: 16px 60px;
   width: 166px;
   height: 56px;
-  background: #e44848;
+  background: radial-gradient(circle at center, #f11919 0%, #ae2d4f 70%);
   font: 500 16px "Inter", sans-serif;
 
   color: #fff;
@@ -18,7 +18,7 @@
   white-space: nowrap;
 }
 .button:hover {
-  background-color: #d33d3d;
+  background: radial-gradient(circle at center, #f11919 0%, #ae2d4f 50%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }

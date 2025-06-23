@@ -1,6 +1,7 @@
 .location {
   font: 400 16px / 1.5 "Inter", sans-serif;
-  color: #101828;
+
+  color: var(--color-gray);
   margin-left: 16px;
 }
 .icon {
@@ -12,7 +13,7 @@
 }
 .price {
   font: 600 24px / 1.33333 "Inter", sans-serif;
-  color: #101828;
+
   margin-top: 16px;
   margin-left: auto;
 }

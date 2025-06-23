@@ -10,7 +10,6 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  color: var(--color-gray);
 }
 
 .input_container {
@@ -18,7 +17,6 @@
   align-items: center;
   gap: 8px;
   height: 56px;
-
   border-radius: 12px;
   background-color: var(--color-badges);
   position: relative;
@@ -94,12 +92,15 @@
   }
   .location_wrapper {
     width: 100%;
-    align-items: center;
+    align-items: left;
   }
   .error_text {
     text-align: center;
   }
   .suggestions_list {
     width: 100%;
+  }
+  .location_label {
+    text-align: left;
   }
 }

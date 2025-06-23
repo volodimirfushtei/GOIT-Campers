@@ -1,7 +1,7 @@
 .container_catalog {
   max-width: 1400px;
   height: auto;
-  background: #fff;
+
   margin: 0 auto;
   display: flex;
   flex-direction: row;
