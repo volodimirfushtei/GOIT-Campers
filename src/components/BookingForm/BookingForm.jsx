@@ -76,7 +76,6 @@ const BookingForm = () => {
                 placeholder="Name*"
               />
               <ErrorMessage name="name" component="div" className={s.error} />
-
               <Field
                 type="email"
                 name="email"

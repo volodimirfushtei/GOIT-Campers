@@ -25,7 +25,7 @@ body.theme-light {
 
 /* dark theme */
 body.theme-dark {
-  background: linear-gradient(135deg, #6324f5, #7d1abf, #710736);
+  background: linear-gradient(135deg, #444545 0%, #2e2f31 100%);
 
   color: var(--color-white);
 }

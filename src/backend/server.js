@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import connectDB from "./db.js";
 import Booking from "./models/Booking.js";
-import Contact from "./models/Contact.js";
+import Contact from "./models/contact.js";
 import { sendBookingEmail } from "./mailer.js";
 import axios from "axios";
 import toast from "react-hot-toast";
