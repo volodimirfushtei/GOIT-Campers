@@ -133,7 +133,7 @@ const SearchForm = ({ onSearch }) => {
                 icon={ICONS[icon]}
                 size="lg"
                 style={{
-                  color: tempFilters[key] ? "red" : "gray",
+                  color: tempFilters[key] ? "red" : "black",
                   cursor: "pointer",
                 }}
               />
@@ -175,7 +175,7 @@ const SearchForm = ({ onSearch }) => {
               <svg
                 className={s.icon}
                 style={{
-                  fill: tempFilters[key] ? "red" : "gray",
+                  fill: tempFilters[key] ? "red" : "black",
                   cursor: "pointer",
                   width: "24px",
                   height: "24px",
@@ -224,7 +224,7 @@ const SearchForm = ({ onSearch }) => {
                     cursor: "pointer",
                     width: "24px",
                     height: "24px",
-                    fill: tempFilters[key] ? "red" : "gray",
+                    fill: tempFilters[key] ? "red" : "black",
                   }}
                 >
                   <use xlinkHref={`/icons-sprite.svg#${icon}`} />
